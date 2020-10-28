@@ -1,12 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import SignInForm from './components/SignInForm';
+import SignUpForm from './components/SignUpForm';
+import firebase from 'firebase';
+import config from './firebase-config.json';
 
 export default function App() {
+  useEffect(() => {
+    firebase.initializeApp(config);
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <SignUpForm/>
+      <SignInForm/>
     </View>
   );
 }
@@ -16,6 +24,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
 });
